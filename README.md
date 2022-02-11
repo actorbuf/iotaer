@@ -3,7 +3,7 @@
 ### 安装
 
 ```shell
-$ go install https://github.com/actorbuf/iotaer@latest
+$ go install github.com/actorbuf/iotaer@latest
 ## output
 go: downloading github.com/actorbuf/iotaer v0.0.0-20210902040340-7af67c79f914
 ```
