@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/actorbuf/builder/rename"
+	"github.com/actorbuf/iotaer/rename"
 	"github.com/elliotchance/pie/pie"
 	"github.com/guonaihong/gout"
 	"github.com/sirupsen/logrus"

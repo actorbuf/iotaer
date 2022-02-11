@@ -1,4 +1,4 @@
-module github.com/actorbuf/builder
+module github.com/actorbuf/iotaer
 
 go 1.16
 

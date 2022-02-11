@@ -1,7 +1,7 @@
 .idea
-builder
-builder.exe
-builder.exe~
+iotaer
+iotaer.exe
+iotaer.exe~
 tmp_protoc
 protobuf.builder.zip
 go.sum

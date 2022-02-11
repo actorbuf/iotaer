@@ -13,7 +13,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/actorbuf/builder/toolkit"
+	"github.com/actorbuf/iotaer/toolkit"
 	"gopkg.in/yaml.v3"
 
 	"github.com/sirupsen/logrus"
@@ -46,9 +46,6 @@ func exec() {
 }
 
 func init() {
-	if checkBuilderVersion() {
-		NeedUpdateFlag = true
-	}
 	rootCmd.AddCommand(addTask())                         // 新增一个系统定时任务
 	rootCmd.AddCommand(versionInfo())                     // 打印builder版本信息
 	rootCmd.AddCommand(addRPCCommand())                   // 新增一个RPC
@@ -69,10 +66,6 @@ func init() {
 	rootCmd.AddCommand(addRouteV2Command())               // 添加一个路由组v2 --做了些diy
 	rootCmd.AddCommand(addErrorCodeFileCommand())         // 创建错误码proto文件
 	rootCmd.AddCommand(buildProtoV2Command())             // proto生成，测试版本
-
-	// 子命令
-	rootCmd.AddCommand(addRepoCommand())       // 仓库操作
-	rootCmd.AddCommand(golangVersionCommand()) // golang版本更新
 }
 
 var (
@@ -152,71 +145,7 @@ func versionInfo() *cobra.Command {
 		Use:   "version",
 		Short: "打印builder版本信息",
 		Run: func(cmd *cobra.Command, args []string) {
-			// 检测环境
-			var homeDir string
-			if toolkit.GetGOOS() == toolkit.Windows {
-				homeDir = os.Getenv("USERPROFILE")
-				if homeDir == "" {
-					driveName := os.Getenv("HOMEDRIVE")
-					homePath := os.Getenv("HOMEPATH")
-					homeDir = fmt.Sprintf("%s%s\\", driveName, homePath)
-				} else {
-					homeDir = fmt.Sprintf("%s\\", homeDir)
-				}
-			} else {
-				homeDir = os.Getenv("HOME")
-				if homeDir == "" {
-					userData, err := ose.Command("sh", "-c", "eval echo $USER").CombinedOutput()
-					if err != nil {
-						_, _ = fmt.Fprintf(os.Stderr, "get user info err: %+v\n", err)
-						return
-					}
-					userName := strings.ReplaceAll(string(userData), "\n", "")
-					if userName == "" {
-						return
-					}
-					if userName == "root" {
-						homeDir = fmt.Sprintf("/root/")
-					} else {
-						homeDir = fmt.Sprintf("/home/%s/", userName)
-					}
-				} else {
-					homeDir = fmt.Sprintf("%s/", homeDir)
-				}
-			}
-			configFile := fmt.Sprintf("%s%s", homeDir, builderConfig)
-			var config = BuilderConfig{}
 
-			_, err := os.Stat(configFile)
-			if err != nil {
-				if !os.IsNotExist(err) {
-					_, _ = fmt.Fprintf(os.Stderr, "check builder config err: %+v\n", err)
-					return
-				}
-				// 新建配置文件
-				data, err := yaml.Marshal(config)
-				if err != nil {
-					_, _ = fmt.Fprintf(os.Stderr, "marshal config file err: %+v\n", err)
-					return
-				}
-				if err := ioutil.WriteFile(configFile, data, fs.ModePerm); err != nil {
-					_, _ = fmt.Fprintf(os.Stderr, "write new builder config err: %+v\n", err)
-					return
-				}
-			}
-			content, err := ioutil.ReadFile(configFile)
-			if err != nil {
-				_, _ = fmt.Fprintf(os.Stderr, "open builder config err: %+v\n", err)
-				return
-			}
-
-			if err := yaml.Unmarshal(content, &config); err != nil {
-				_, _ = fmt.Fprintf(os.Stderr, "unmarshal builder config err: %+v\n", err)
-				return
-			}
-
-			_, _ = fmt.Fprintf(os.Stdout, ProjectName+"\n-----\n更新时间: %+v\nCommitID: %+v\n更新说明: %+v\n-----\n",
-				config.UpdatedAt, config.Commit, config.Message)
 		},
 	}
 

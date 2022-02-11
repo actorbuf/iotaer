@@ -3,9 +3,9 @@
 ### 安装
 
 ```shell
-$ go install https://github.com/actorbuf/builder@latest
+$ go install https://github.com/actorbuf/iotaer@latest
 ## output
-go: downloading github.com/actorbuf/builder v0.0.0-20210902040340-7af67c79f914
+go: downloading github.com/actorbuf/iotaer v0.0.0-20210902040340-7af67c79f914
 ```
 
 安装完毕后执行 `builder -h` 验证是否安装成功

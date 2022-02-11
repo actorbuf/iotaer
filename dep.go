@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/actorbuf/builder/toolkit"
+	"github.com/actorbuf/iotaer/toolkit"
 	"os"
 	ose "os/exec"
 	"regexp"
@@ -130,10 +130,10 @@ func installProtocGenGoGrpc() {
 // upgradeBuilder builder 的自我更新
 func upgradeBuilder() error {
 	_, _ = fmt.Fprintf(os.Stdout, "-----\n更新 builder 插件中...\n")
-	genO, err := ose.Command("go", "install", "github.com/actorbuf/builder@latest").CombinedOutput()
+	genO, err := ose.Command("go", "install", "github.com/actorbuf/iotaer@latest").CombinedOutput()
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr,
-			"安装 builder 报错: %+v\n\n你可以手动重装,执行如下命令:\n	github.com/actorbuf/builder@latest\n", err)
+			"安装 builder 报错: %+v\n\n你可以手动重装,执行如下命令:\n	github.com/actorbuf/iotaer@latest\n", err)
 		return err
 	} else {
 		_, _ = fmt.Fprintf(os.Stdout, "%+v\nbuilder 更新完成\n-----\n", string(genO))
