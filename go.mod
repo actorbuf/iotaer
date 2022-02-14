@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/actorbuf/proto-format v0.0.0-20220211085837-e558658686a6
-	github.com/actorbuf/proto-parser v0.0.0-20220211085909-916fa91bc994
+	github.com/actorbuf/proto-parser v0.0.0-20220214035251-4ae3a17066c3
 	github.com/elliotchance/pie v1.39.0
 	github.com/guonaihong/gout v0.2.11
 	github.com/sirupsen/logrus v1.8.1
