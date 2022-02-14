@@ -12,7 +12,7 @@ go: downloading github.com/actorbuf/iotaer v0.0.0-20210902040340-7af67c79f914
 
 ```shell
 [iotaer@iotaer iotaer]$ iotaer -h
-iotaer 是基于 omega 库的一个提高生产效率的工具链
+iotaer 是基于 iota 库的一个提高生产效率的工具链
 
 Usage:
   iotaer [command]

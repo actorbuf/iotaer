@@ -53,7 +53,7 @@ func init() {
 	rootCmd.AddCommand(updateBuilder())                   // 检测并更新builder
 	rootCmd.AddCommand(addSvcCommand())                   // 添加一个服务
 	rootCmd.AddCommand(addRouteCommand())                 // 添加一个路由组
-	rootCmd.AddCommand(buildRunCommand())                 // 快速运行omega项目
+	rootCmd.AddCommand(buildRunCommand())                 // 快速运行iota项目
 	rootCmd.AddCommand(outputMdCommand())                 // 生成一个api的md文档
 	rootCmd.AddCommand(buildHTTPCommand())                // 生成一个新项目
 	rootCmd.AddCommand(buildProtoCommand())               // proto生成
